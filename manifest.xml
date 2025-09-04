@@ -1,51 +1,50 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:type="MailApp">
-	<Id>00000000-0000-0000-0000-000000000000</Id>
-	<Version>1.0.0.0</Version>
-	<ProviderName>Dummy Provider für IWARP CA</ProviderName>
-	<DefaultLocale>de-DE</DefaultLocale>
-	<DisplayName DefaultValue="Dummy Add-In" />
-	<Description DefaultValue="Dies ist ein Dummy-Manifest für Testzwecke." />
+  <Id>11111111-2222-3333-4444-555555555555</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Test Provider</ProviderName>
+  <DefaultLocale>de-DE</DefaultLocale>
+  <DisplayName DefaultValue="Test Add-In für New Outlook" />
+  <Description DefaultValue="Dies ist ein Testmanifest für ein Outlook-Add-In." />
 
-	<!-- Icons -->
-	<IconUrl DefaultValue="https://via.placeholder.com/32" />
-	<HighResolutionIconUrl DefaultValue="https://via.placeholder.com/64" />
+  <!-- Icons -->
+  <IconUrl DefaultValue="https://via.placeholder.com/32" />
+  <HighResolutionIconUrl DefaultValue="https://via.placeholder.com/64" />
 
-	<!-- Support -->
-	<SupportUrl DefaultValue="https://example.com/support" />
+  <!-- Support -->
+  <SupportUrl DefaultValue="https://example.com/support" />
 
-	<!-- Hosts -->
-	<Hosts>
-		<Host Name="Mailbox" />
-	</Hosts>
+  <!-- Hosts -->
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
 
-	<!-- Permissions -->
-	<Permissions>ReadWriteMailbox</Permissions>
+  <!-- Permissions -->
+  <Permissions>ReadWriteMailbox</Permissions>
 
-	<FormSettings>
-		<Form xsi:type="MessageReadCommandSurface">
-			<DesktopSettings>
-				<SourceLocation DefaultValue="https://example.com/youraddin.html" />
-				<RequestedHeight>100</RequestedHeight>
-			</DesktopSettings>
-		</Form>
-	</FormSettings>
+  <FormSettings>
+    <Form xsi:type="MessageReadCommandSurface">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://example.com/testaddin.html" />
+        <RequestedHeight>100</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
 
-	<!-- Runtime VersionOverrides -->
-	<VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0">
-		<VersionOverride xsi:type="MailHost">
-			<Requirements>
-				<Sets>
-					<Set Name="Mailbox" MinVersion="1.1" />
-				</Sets>
-			</Requirements>
-			<ExtensionPoint xsi:type="MessageReadCommandSurface">
-				<OfficeTab id="TabDefault">
-					<Group id="dummyGroup" label="Dummy" />
-				</OfficeTab>
-			</ExtensionPoint>
-		</VersionOverride>
-	</VersionOverrides>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.0">
+    <VersionOverride xsi:type="MailHost">
+      <Requirements>
+        <Sets>
+          <Set Name="Mailbox" MinVersion="1.1" />
+        </Sets>
+      </Requirements>
+      <ExtensionPoint xsi:type="MessageReadCommandSurface">
+        <OfficeTab id="TabDefault">
+          <Group id="testGroup" label="Test" />
+        </OfficeTab>
+      </ExtensionPoint>
+    </VersionOverride>
+  </VersionOverrides>
 </OfficeApp>
