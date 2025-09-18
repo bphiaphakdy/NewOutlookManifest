@@ -1,0 +1,129 @@
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+    xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
+    xsi:type="MailApp">
+    <Id>9da5308f-5312-4a5e-9a90-a24988651c3b</Id>
+    <Version>2.0.0.19</Version>
+    <ProviderName>AXA</ProviderName>
+    <DefaultLocale>de-DE</DefaultLocale>
+    <DisplayName DefaultValue="AXA E-Mail-Agent Dev">
+        <Override Locale="fr-FR" Value="AXA Agent Email Dev" />
+        <Override Locale="it-IT" Value="AXA Agente Email Dev" />
+        <Override Locale="en-US" Value="AXA Email Agent Dev" />
+    </DisplayName>
+    <Description DefaultValue="v2.0.0.19" />
+    <IconUrl
+        DefaultValue="https://work.dev.axa-ch.intraxa/email-automation/icon32.png" />
+    <HighResolutionIconUrl
+        DefaultValue="https://work.dev.axa-ch.intraxa/email-automation/icon48.png" />
+    <SupportUrl DefaultValue="https://github.axa.com/AXACH-CCDA/axach-as-email-automation" />
+    <AppDomains>
+        <AppDomain>https://appsforoffice.microsoft.com</AppDomain>
+        <AppDomain>https://authenticator.pingone.eu</AppDomain>
+        <AppDomain>https://axa.ch</AppDomain>
+        <AppDomain>https://bf04011nrx.bf.dynatrace.com</AppDomain>
+        <AppDomain>https://js-cdn.dynatrace.com</AppDomain>
+        <AppDomain>https://login.dev.axa.ch</AppDomain>
+        <AppDomain>https://onelogin.axa.com</AppDomain>
+        <AppDomain>https://telemetryservice.firstpartyapps.oaspapps.com</AppDomain>
+        <AppDomain>https://work.dev.axa-ch.intraxa</AppDomain>
+    </AppDomains>
+
+    <Hosts>
+        <Host Name="Mailbox" />
+    </Hosts>
+    <Requirements>
+        <Sets>
+            <Set Name="Mailbox" MinVersion="1.1" />
+        </Sets>
+    </Requirements>
+    <FormSettings>
+        <Form xsi:type="ItemRead">
+            <DesktopSettings>
+                <SourceLocation
+                    DefaultValue="https://work.dev.axa-ch.intraxa/email-automation/devppd/taskpane.html" />
+                <RequestedHeight>250</RequestedHeight>
+            </DesktopSettings>
+        </Form>
+    </FormSettings>
+    <Permissions>ReadWriteItem</Permissions>
+    <Rule xsi:type="RuleCollection" Mode="Or">
+        <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+    </Rule>
+    <DisableEntityHighlighting>false</DisableEntityHighlighting>
+    <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides"
+        xsi:type="VersionOverridesV1_0">
+        <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides/1.1"
+            xsi:type="VersionOverridesV1_1">
+            <Requirements>
+                <bt:Sets DefaultMinVersion="1.3">
+                    <bt:Set Name="Mailbox" />
+                </bt:Sets>
+            </Requirements>
+            <Hosts>
+                <Host xsi:type="MailHost">
+                    <DesktopFormFactor>
+                        <SupportsSharedFolders>true</SupportsSharedFolders>
+                        <ExtensionPoint xsi:type="MessageReadCommandSurface">
+                            <OfficeTab id="TabDefault">
+                                <Group id="msgReadCmdGroup">
+                                    <Label resid="CommandsGroup.Label" />
+                                    <Control xsi:type="Button" id="msgReadInsertGist">
+                                        <Label resid="TaskpaneButton.Label" />
+                                        <Supertip>
+                                            <Title resid="TaskpaneButton.SupertipTitle" />
+                                            <Description resid="TaskpaneButton.SupertipText" />
+                                        </Supertip>
+                                        <Icon>
+                                            <bt:Image size="16" resid="Icon.16x16" />
+                                            <bt:Image size="32" resid="Icon.32x32" />
+                                            <bt:Image size="80" resid="Icon.80x80" />
+                                        </Icon>
+                                        <Action xsi:type="ShowTaskpane">
+                                            <SourceLocation resid="Taskpane.Url" />
+                                        </Action>
+                                    </Control>
+                                </Group>
+                            </OfficeTab>
+                        </ExtensionPoint>
+                    </DesktopFormFactor>
+                </Host>
+            </Hosts>
+            <Resources>
+                <bt:Images>
+                    <bt:Image id="Icon.16x16"
+                        DefaultValue="https://work.dev.axa-ch.intraxa/email-automation/icon16.png" />
+                    <bt:Image id="Icon.32x32"
+                        DefaultValue="https://work.dev.axa-ch.intraxa/email-automation/icon32.png" />
+                    <bt:Image id="Icon.80x80"
+                        DefaultValue="https://work.dev.axa-ch.intraxa/email-automation/icon48.png" />
+                </bt:Images>
+                <bt:Urls>
+                    <bt:Url id="Taskpane.Url"
+                        DefaultValue="https://work.dev.axa-ch.intraxa/email-automation/devppd/taskpane.html" />
+                </bt:Urls>
+                <bt:ShortStrings>
+                    <bt:String id="CommandsGroup.Label" DefaultValue="AXA E-Mail-Agent Dev">
+                        <bt:Override Locale="fr-FR" Value="AXA Agent Email Dev" />
+                        <bt:Override Locale="it-IT" Value="AXA Agente Email Dev" />
+                        <bt:Override Locale="en-US" Value="AXA Email Agent Dev" />
+                    </bt:String>
+                    <bt:String id="TaskpaneButton.Label" DefaultValue="AXA E-Mail-Agent Dev">
+                        <bt:Override Locale="fr-FR" Value="AXA Agent Email Dev" />
+                        <bt:Override Locale="it-IT" Value="AXA Agente Email Dev" />
+                        <bt:Override Locale="en-US" Value="AXA Email Agent Dev" />
+                    </bt:String>
+                    <bt:String id="TaskpaneButton.SupertipTitle" DefaultValue="AXA E-Mail-Agent Dev">
+                        <bt:Override Locale="fr-FR" Value="AXA Agent de messagerie Dev" />
+                        <bt:Override Locale="it-IT" Value="AXA Agente Email Dev" />
+                        <bt:Override Locale="en-US" Value="AXA Email Agent Dev" />
+                    </bt:String>
+                </bt:ShortStrings>
+                <bt:LongStrings>
+                    <bt:String id="TaskpaneButton.SupertipText" DefaultValue="v2.0.0.19" />
+                </bt:LongStrings>
+            </Resources>
+        </VersionOverrides>
+    </VersionOverrides>
+</OfficeApp>
