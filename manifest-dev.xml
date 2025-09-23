@@ -7,7 +7,7 @@
     <Version>1.0.0.0</Version>
     <ProviderName>AXA IWARP CA</ProviderName>
     <DefaultLocale>de-DE</DefaultLocale>
-    <DisplayName DefaultValue="AXA IWARP CA Office Components DEV" />
+    <DisplayName DefaultValue="AXA IWARP CA Office Components ( DEV )" />
     <Description DefaultValue="v1.0.0.0" />
     <IconUrl
         DefaultValue="https://bphiaphakdy.github.io/NewOutlookManifest/icon32.png" />
