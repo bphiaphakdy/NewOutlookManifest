@@ -101,8 +101,8 @@
                 </bt:Urls>
                 <bt:ShortStrings>
                     <bt:String id="CommandsGroup.Label" DefaultValue="AXA IWARP CA Office Components ( DEV )" />                    
-                    <bt:String id="TaskpaneButton.Label" DefaultValue="AXA IWARP CA Office Components DEV" />
-                    <bt:String id="TaskpaneButton.SupertipTitle" DefaultValue="AXA IWARP CA Office Components DEV" />                      
+                    <bt:String id="TaskpaneButton.Label" DefaultValue="AXA IWARP CA Office Components ( DEV )" />
+                    <bt:String id="TaskpaneButton.SupertipTitle" DefaultValue="AXA IWARP CA Office Components ( DEV )" />                      
                 </bt:ShortStrings>
                 <bt:LongStrings>
                     <bt:String id="TaskpaneButton.SupertipText" DefaultValue="v1.0.0.0" />
