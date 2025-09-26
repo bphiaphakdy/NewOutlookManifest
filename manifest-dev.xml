@@ -3,7 +3,7 @@
     xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
     xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
     xsi:type="MailApp">
-    <Id>87DA71D2-9257-40C2-A8D3-EAAFF4B246DE</Id>
+    <Id>B4D3DC93-9B0D-430B-9504-AFE9B0E163DE</Id>
     <Version>1.0.0.0</Version>
     <ProviderName>AXA IWARP CA</ProviderName>
     <DefaultLocale>de-DE</DefaultLocale>
