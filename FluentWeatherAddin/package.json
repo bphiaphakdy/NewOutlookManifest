@@ -1,0 +1,11 @@
+{
+  "name": "fluent-weather-addin",
+  "version": "1.0.0",
+  "description": "Fluent Weather Outlook Add-in",
+  "main": "index.js",
+  "scripts": {
+    "start": "dotnet run --project FluentWeatherAddinWeb/FluentWeatherAddinWeb.csproj"
+  },
+  "author": "",
+  "license": "MIT"
+}

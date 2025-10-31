@@ -1,0 +1,9 @@
+{
+  "name": "fluent-weather-addin-web",
+  "version": "1.0.0",
+  "description": "Fluent Weather Outlook Add-in Debug",
+  "main": "index.js",
+  "scripts": {},
+  "author": "",
+  "license": "MIT"
+}

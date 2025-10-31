@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OfficeApp
+  xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:mailappversionoverrides="http://schemas.microsoft.com/office/mailappversionoverrides"
+  xsi:type="MailApp">
+
+  <Id>2c2f0e55-7b1e-4e60-9f79-bc6fd4b20a11</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>FLUENT CODE GmbH</ProviderName>
+  <DefaultLocale>de-DE</DefaultLocale>
+  <DisplayName DefaultValue="AXA E-Mail Prozessor" />
+  <Description DefaultValue="Intelligente E-Mail-Verarbeitung für AXA-Mitarbeiter." />
+  <IconUrl DefaultValue="https://localhost:7001/icon.svg" />
+  <HighResolutionIconUrl DefaultValue="https://localhost:7001/icon.svg" />
+
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
+
+  <Requirements>
+    <Sets DefaultMinVersion="1.8">
+      <Set Name="Mailbox" />
+    </Sets>
+  </Requirements>
+
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+        <SourceLocation DefaultValue="https://localhost:7001/Pages/TaskPane.html" />
+        <RequestedHeight>400</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <Permissions>ReadWriteItem</Permissions>
+
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+  </Rule>
+
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides" xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="FluentWeatherGroup">
+                <Label resid="FluentWeatherGroup.Label" />
+                <Control xsi:type="Button" id="ShowWeatherPane">
+                  <Label resid="ShowWeatherPane.Label" />
+                  <Supertip>
+                    <Title resid="ShowWeatherPane.Label" />
+                    <Description resid="ShowWeatherPane.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon32" />
+                    <bt:Image size="32" resid="Icon32" />
+                    <bt:Image size="80" resid="Icon32" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="WeatherTaskPane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon32" DefaultValue="https://localhost:7001/icon.svg" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="WeatherTaskPane.Url" DefaultValue="https://localhost:7001/Pages/TaskPane.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="FluentWeatherGroup.Label" DefaultValue="AXA Tools" />
+        <bt:String id="ShowWeatherPane.Label" DefaultValue="E-Mail Prozessor" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="ShowWeatherPane.Tooltip" DefaultValue="Öffnet den AXA E-Mail Prozessor für intelligente E-Mail-Verarbeitung" />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+</OfficeApp>

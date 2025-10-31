@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fluent Weather - Standalone Test</title>
+    <link rel="stylesheet" href="site.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: #0078d4;
+            color: white;
+            padding: 15px;
+            margin: -20px -20px 20px -20px;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+        .weather-card {
+            border: 1px solid #e1e1e1;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+            background: #fafafa;
+        }
+        .btn {
+            background: #0078d4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            margin: 10px 0;
+        }
+        .btn:hover {
+            background: #106ebe;
+        }
+        .simulation-controls {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .simulation-controls h3 {
+            margin-top: 0;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header" style="background: #00008f;">
+            <svg width="60" height="20" viewBox="0 0 120 40" fill="currentColor" style="margin-bottom: 10px;">
+              <path d="M20 5L30 25L40 5H50L35 35H25L10 5H20Z"/>
+              <path d="M55 35L70 5L85 35H55Z"/>
+              <path d="M90 5L105 35H95L90 25L85 35H75L90 5Z"/>
+            </svg>
+            <h1>AXA E-Mail Prozessor</h1>
+            <p>Standalone Test-Version</p>
+        </div>
+
+        <div class="simulation-controls">
+            <h3>📧 Outlook Simulation</h3>
+            <p>Diese Version simuliert das Verhalten im Outlook Add-in TaskPane.</p>
+            <button class="btn" onclick="simulateOutlookContext()">Outlook Kontext simulieren</button>
+        </div>
+
+        <div id="weather-content">
+            <h2>7-Tage Wettervorhersage Zürich</h2>
+            <div id="weather-data">
+                <p>Lade Wetterdaten...</p>
+            </div>
+            <button class="btn" onclick="loadWeatherData()">Wetter aktualisieren</button>
+        </div>
+
+        <div class="simulation-controls">
+            <h3>🔧 Entwickler-Tools</h3>
+            <button class="btn" onclick="testOfficeJsApi()">Office.js API testen</button>
+            <button class="btn" onclick="showDebugInfo()">Debug-Informationen</button>
+            <div id="debug-output" style="margin-top: 10px; padding: 10px; background: #f8f9fa; border-radius: 4px; font-family: monospace; font-size: 12px; display: none;"></div>
+        </div>
+    </div>
+
+    <script>
+        // Simuliere Office.js für lokale Tests
+        window.Office = window.Office || {
+            onReady: function(callback) {
+                console.log('Office.js simuliert - bereit für Tests');
+                if (callback) callback();
+            },
+            context: {
+                mailbox: {
+                    item: {
+                        subject: 'Test E-Mail: Wichtige Nachricht',
+                        from: { emailAddress: 'max.mustermann@example.com' },
+                        dateTimeCreated: new Date(),
+                        body: {
+                            getAsync: function(coercionType, callback) {
+                                // Simuliere E-Mail-Body
+                                const mockBody = `Hallo,
+
+das ist eine Test-E-Mail für das Add-in. Sie enthält verschiedene Informationen:
+
+1. Wichtige Termine für nächste Woche
+2. Budget-Diskussion steht an  
+3. Bitte um Rückmeldung bis Freitag
+
+Mit freundlichen Grüßen
+Max Mustermann
+
+P.S. Diese E-Mail wurde automatisch generiert für Testzwecke.`;
+
+                                setTimeout(() => {
+                                    callback({
+                                        status: 'succeeded', // Office.AsyncResultStatus.Succeeded
+                                        value: mockBody
+                                    });
+                                }, 500); // Simuliere Netzwerk-Delay
+                            }
+                        }
+                    }
+                }
+            },
+            CoercionType: {
+                Text: 'text'
+            },
+            AsyncResultStatus: {
+                Succeeded: 'succeeded'
+            }
+        };
+
+        async function loadWeatherData() {
+            const weatherDiv = document.getElementById('weather-data');
+            weatherDiv.innerHTML = '<p>Lade Wetterdaten...</p>';
+            
+            try {
+                // Simuliere API-Aufruf
+                const response = await fetch('/api/weather');
+                if (response.ok) {
+                    const data = await response.json();
+                    displayWeatherData(data);
+                } else {
+                    // Fallback mit Mock-Daten
+                    displayMockWeatherData();
+                }
+            } catch (error) {
+                console.error('Fehler beim Laden der Wetterdaten:', error);
+                displayMockWeatherData();
+            }
+        }
+
+        function displayWeatherData(data) {
+            const weatherDiv = document.getElementById('weather-data');
+            let html = '';
+            
+            data.forEach(day => {
+                html += `
+                    <div class="weather-card">
+                        <strong>${day.date}</strong><br>
+                        🌡️ ${day.temperature}°C<br>
+                        ${day.description}
+                    </div>
+                `;
+            });
+            
+            weatherDiv.innerHTML = html;
+        }
+
+        function displayMockWeatherData() {
+            const mockData = [
+                { date: 'Heute', temperature: 18, description: '☀️ Sonnig' },
+                { date: 'Morgen', temperature: 16, description: '⛅ Teilweise bewölkt' },
+                { date: 'Übermorgen', temperature: 14, description: '🌧️ Regenschauer' },
+                { date: 'Donnerstag', temperature: 20, description: '☀️ Sonnig' },
+                { date: 'Freitag', temperature: 22, description: '☀️ Sehr sonnig' },
+                { date: 'Samstag', temperature: 19, description: '⛅ Bewölkt' },
+                { date: 'Sonntag', temperature: 17, description: '🌦️ Wechselhaft' }
+            ];
+            
+            displayWeatherData(mockData);
+        }
+
+        function simulateOutlookContext() {
+            alert('Outlook Kontext simuliert!\\n\\nE-Mail: ' + Office.context.mailbox.item.subject + '\\nAbsender: ' + Office.context.mailbox.item.from.emailAddress);
+        }
+
+        function testOfficeJsApi() {
+            const debugDiv = document.getElementById('debug-output');
+            debugDiv.style.display = 'block';
+            debugDiv.innerHTML = `
+                <strong>Office.js API Test:</strong><br>
+                - Office verfügbar: ${typeof Office !== 'undefined' ? '✅' : '❌'}<br>
+                - Mailbox Kontext: ${Office.context?.mailbox ? '✅' : '❌'}<br>
+                - E-Mail Item: ${Office.context?.mailbox?.item ? '✅' : '❌'}<br>
+                - Betreff: ${Office.context?.mailbox?.item?.subject || 'Nicht verfügbar'}<br>
+                - Absender: ${Office.context?.mailbox?.item?.from?.emailAddress || 'Nicht verfügbar'}
+            `;
+        }
+
+        function showDebugInfo() {
+            const debugDiv = document.getElementById('debug-output');
+            debugDiv.style.display = 'block';
+            debugDiv.innerHTML = `
+                <strong>Debug-Informationen:</strong><br>
+                - URL: ${window.location.href}<br>
+                - User Agent: ${navigator.userAgent}<br>
+                - Viewport: ${window.innerWidth}x${window.innerHeight}<br>
+                - Lokale Zeit: ${new Date().toLocaleString()}<br>
+                - Office.js geladen: ${typeof Office !== 'undefined' ? 'Ja' : 'Nein'}
+            `;
+        }
+
+        // Automatisch Wetterdaten beim Laden der Seite
+        window.addEventListener('load', function() {
+            Office.onReady(function() {
+                loadWeatherData();
+            });
+        });
+    </script>
+</body>
+</html>
