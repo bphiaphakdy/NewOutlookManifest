@@ -1,19 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
     xmlns:mailappor="http://schemas.microsoft.com/office/mailappversionoverrides/1.0"
     xsi:type="MailApp">
     <Id>B4D3DC93-9B0D-430B-9504-AFE9B0E163DE</Id>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.2</Version>
     <ProviderName>AXA IWARP CA</ProviderName>
     <DefaultLocale>de-DE</DefaultLocale>
     <DisplayName DefaultValue="AXA iWARP CA Office Components ( DEV )" />
-    <Description DefaultValue="v1.0.0.0" />
-    <IconUrl
-        DefaultValue="https://bphiaphakdy.github.io/NewOutlookManifest/icon32.png" />
-    <HighResolutionIconUrl
-        DefaultValue="https://bphiaphakdy.github.io/NewOutlookManifest/icon48.png" />
-    <SupportUrl DefaultValue="https://confluence.axa.com/confluence/x/mEH7AQ" />
+    <Description DefaultValue="v1.0.0.2" />
+    <IconUrl DefaultValue="https://office-components-webaddin-dev-iwarpca-poc-dev-axa-ch.axa-ch-dev-int.red.switzerlandnorth.azure.openpaas.axa-cloud.com/iwarpca-oc-webaddin/icon.png" />
+      <HighResolutionIconUrl DefaultValue="https://office-components-webaddin-dev-iwarpca-poc-dev-axa-ch.axa-ch-dev-int.red.switzerlandnorth.azure.openpaas.axa-cloud.com/iwarpca-oc-webaddin/icon.png" />
+      <SupportUrl DefaultValue="https://confluence.axa.com/confluence/x/mEH7AQ" />
     <AppDomains>
         <AppDomain>https://appsforoffice.microsoft.com</AppDomain>
         <AppDomain>https://authenticator.pingone.eu</AppDomain>
@@ -24,29 +23,33 @@
         <AppDomain>https://onelogin.axa.com</AppDomain>
         <AppDomain>https://telemetryservice.firstpartyapps.oaspapps.com</AppDomain>
         <AppDomain>https://work.dev.axa-ch.intraxa</AppDomain>
+	    <AppDomain>https://office-components-webaddin-dev-iwarpca-poc-dev-axa-ch.axa-ch-dev-int.red.switzerlandnorth.azure.openpaas.axa-cloud.com</AppDomain>
     </AppDomains>
+  <Hosts>
+    <Host Name="Mailbox" />
+  </Hosts>
 
-    <Hosts>
-        <Host Name="Mailbox" />
-    </Hosts>
-    <Requirements>
+  <Requirements>
         <Sets>
             <Set Name="Mailbox" MinVersion="1.1" />
-        </Sets>
-    </Requirements>
-    <FormSettings>
-        <Form xsi:type="ItemRead">
-            <DesktopSettings>
-                <SourceLocation
-                    DefaultValue="https://bphiaphakdy.github.io/NewOutlookManifest/taskpane.html" />
-                <RequestedHeight>250</RequestedHeight>
-            </DesktopSettings>
-        </Form>
-    </FormSettings>
-    <Permissions>ReadWriteItem</Permissions>
-    <Rule xsi:type="RuleCollection" Mode="Or">
-        <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
-    </Rule>
+    </Sets>
+  </Requirements>
+
+  <FormSettings>
+    <Form xsi:type="ItemRead">
+      <DesktopSettings>
+              <SourceLocation 
+	      		DefaultValue="https://office-components-webaddin-dev-iwarpca-poc-dev-axa-ch.axa-ch-dev-int.red.switzerlandnorth.azure.openpaas.axa-cloud.com/iwarpca-oc-webaddin/Pages/TaskPane.html" />
+		        <RequestedHeight>400</RequestedHeight>
+      </DesktopSettings>
+    </Form>
+  </FormSettings>
+
+  <Permissions>ReadWriteItem</Permissions>
+
+  <Rule xsi:type="RuleCollection" Mode="Or">
+    <Rule xsi:type="ItemIs" ItemType="Message" FormType="Read" />
+  </Rule>
     <DisableEntityHighlighting>false</DisableEntityHighlighting>
     <VersionOverrides xmlns="http://schemas.microsoft.com/office/mailappversionoverrides"
         xsi:type="VersionOverridesV1_0">
@@ -57,57 +60,51 @@
                     <bt:Set Name="Mailbox" />
                 </bt:Sets>
             </Requirements>
-            <Hosts>
-                <Host xsi:type="MailHost">
-                    <DesktopFormFactor>
-                        <SupportsSharedFolders>true</SupportsSharedFolders>
-                        <ExtensionPoint xsi:type="MessageReadCommandSurface">
-                            <OfficeTab id="TabDefault">
-                                <Group id="msgReadCmdGroup">
-                                    <Label resid="CommandsGroup.Label" />
-                                    <Control xsi:type="Button" id="msgReadInsertGist">
-                                        <Label resid="TaskpaneButton.Label" />
-                                        <Supertip>
-                                            <Title resid="TaskpaneButton.SupertipTitle" />
-                                            <Description resid="TaskpaneButton.SupertipText" />
-                                        </Supertip>
-                                        <Icon>
-                                            <bt:Image size="16" resid="Icon.16x16" />
-                                            <bt:Image size="32" resid="Icon.32x32" />
-                                            <bt:Image size="80" resid="Icon.80x80" />
-                                        </Icon>
-                                        <Action xsi:type="ShowTaskpane">
-                                            <SourceLocation resid="Taskpane.Url" />
-                                        </Action>
-                                    </Control>
-                                </Group>
-                            </OfficeTab>
-                        </ExtensionPoint>
-                    </DesktopFormFactor>
-                </Host>
-            </Hosts>
-            <Resources>
-                <bt:Images>
-                    <bt:Image id="Icon.16x16"
-                        DefaultValue="https://bphiaphakdy.github.io/NewOutlookManifest/icon16.png" />
-                    <bt:Image id="Icon.32x32"
-                        DefaultValue="https://bphiaphakdy.github.io/NewOutlookManifest/icon32.png" />
-                    <bt:Image id="Icon.80x80"
-                        DefaultValue="https://bphiaphakdy.github.io/NewOutlookManifest/icon48.png" />
-                </bt:Images>
-                <bt:Urls>
-                    <bt:Url id="Taskpane.Url"
-                        DefaultValue="https://bphiaphakdy.github.io/NewOutlookManifest/taskpane.html" />
-                </bt:Urls>
-                <bt:ShortStrings>
-                    <bt:String id="CommandsGroup.Label" DefaultValue="AXA iWARP CA Office Components ( DEV )" />                    
-                    <bt:String id="TaskpaneButton.Label" DefaultValue="AXA iWARP CA Office Components ( DEV )" />
-                    <bt:String id="TaskpaneButton.SupertipTitle" DefaultValue="AXA iWARP CA Office Components ( DEV )" />                      
-                </bt:ShortStrings>
-                <bt:LongStrings>
-                    <bt:String id="TaskpaneButton.SupertipText" DefaultValue="v1.0.0.0" />
-                </bt:LongStrings>
-            </Resources>
-        </VersionOverrides>
-    </VersionOverrides>
+    <Hosts>
+      <Host xsi:type="MailHost">
+        <DesktopFormFactor>
+			<SupportsSharedFolders>true</SupportsSharedFolders>
+          <ExtensionPoint xsi:type="MessageReadCommandSurface">
+            <OfficeTab id="TabDefault">
+              <Group id="iWARPCAGroup">
+                <Label resid="iWARPCAGroup.Label" />
+                <Control xsi:type="Button" id="ShowiWARPCAPane">
+                  <Label resid="ShowiWARPCAPane.Label" />
+                  <Supertip>
+                    <Title resid="ShowiWARPCAPane.Label" />
+                    <Description resid="ShowiWARPCAPane.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon32" />
+                    <bt:Image size="32" resid="Icon32" />
+                    <bt:Image size="80" resid="Icon32" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <SourceLocation resid="iWARPCATaskPane.Url" />
+                  </Action>
+                </Control>
+              </Group>
+            </OfficeTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon32" DefaultValue="https://office-components-webaddin-dev-iwarpca-poc-dev-axa-ch.axa-ch-dev-int.red.switzerlandnorth.azure.openpaas.axa-cloud.com/iwarpca-oc-webaddin/icon.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="iWARPCATaskPane.Url" DefaultValue="https://office-components-webaddin-dev-iwarpca-poc-dev-axa-ch.axa-ch-dev-int.red.switzerlandnorth.azure.openpaas.axa-cloud.com/iwarpca-oc-webaddin/Pages/TaskPane.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="iWARPCAGroup.Label" DefaultValue="iWARP CA" />
+        <bt:String id="ShowiWARPCAPane.Label" DefaultValue="Prozess starten" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="ShowiWARPCAPane.Tooltip" DefaultValue="Startet einen neuen Geschäftprozess" />
+      </bt:LongStrings>
+    </Resources>
+  </VersionOverrides>
+  </VersionOverrides>
 </OfficeApp>
